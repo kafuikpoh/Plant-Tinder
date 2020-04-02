@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="PlantTinder.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Application.Resources>
+        <!--  Colors  -->
+        <Color x:Key="GreenColor">#528665</Color>
+        <Color x:Key="LightGreenColor">#8BA595</Color>
+        <Color x:Key="GreyColor">#F3F5F7</Color>
+        <Color x:Key="TextColor">#4F4F4F</Color>
+
+        <!--  Fonts  -->
+        <OnPlatform
+            x:Key="BalooRegular"
+            x:TypeArguments="x:String"
+            Android="BalooThambi2-Regular.ttf#Baloo Thambi 2 Regular"
+            iOS="Baloo Thambi 2" />
+        <OnPlatform
+            x:Key="BalooMedium"
+            x:TypeArguments="x:String"
+            Android="BalooThambi2-Medium.ttf#Baloo Thambi 2 Medium"
+            iOS="Baloo Thambi 2" />
+        <OnPlatform
+            x:Key="BalooSemiBold"
+            x:TypeArguments="x:String"
+            Android="BalooThambi2-SemiBold.ttf#Baloo Thambi 2 SemiBold"
+            iOS="Baloo Thambi 2" />
+        <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="Material Design Icons" />
+            <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+        </OnPlatform>
+
+        <!--  Font Icons  -->
+
+        <x:String x:Key="dots">&#xf1d8;</x:String>
+        <x:String x:Key="back">&#xf141;</x:String>
+        <x:String x:Key="cart">&#xf111;</x:String>
+        <x:String x:Key="heart">&#xf2d5;</x:String>
+        <!--<x:String x:Key="contrast">&#xf00ee;</x:String>-->
+        <!--  Implicit styles  -->
+        <Style TargetType="Grid">
+            <Setter Property="RowSpacing" Value="0" />
+            <Setter Property="ColumnSpacing" Value="0" />
+        </Style>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PlantTinder.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:PlantTinder.Converters"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <!--  Padding="35,50,35,35"  -->
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <OnPlatform.iOS>30,40,30,40</OnPlatform.iOS>
+            <OnPlatform.Android>20,10,20,20</OnPlatform.Android>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <local:BoolToColorConverter x:Key="boolToColor" />
+        <local:BoolToTextColor x:Key="boolToTextColor" />
+        <local:StringToImageConverter x:Key="stringToImage" />
+
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Fake navbar  -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center">
+                <Image Aspect="AspectFit" Source="menu.png" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Column="1"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                WidthRequest="48">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{StaticResource GreyColor}"
+                    CornerRadius="24"
+                    HasShadow="False"
+                    HeightRequest="48"
+                    WidthRequest="48">
+                    <Label
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="28"
+                        HorizontalTextAlignment="Center"
+                        Text="{StaticResource cart}"
+                        TextColor="{StaticResource TextColor}"
+                        VerticalTextAlignment="Center" />
+                </Frame>
+            </StackLayout>
+        </Grid>
+
+        <!--  Content  -->
+        <Grid Grid.Row="1" Margin="0,30,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="440" />
+            </Grid.RowDefinitions>
+
+            <StackLayout>
+                <Label
+                    FontFamily="{StaticResource BalooMedium}"
+                    FontSize="30"
+                    Text="Popular Products"
+                    TextColor="{StaticResource TextColor}" />
+            </StackLayout>
+
+
+            <!--  category pills  -->
+
+
+            <CollectionView
+                Grid.Row="2"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding Categories}"
+                SelectedItem="{Binding CategoryItemSelected}"
+                SelectionChanged="CategoryView_SelectionChanged"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="{Binding IsSelected, Converter={StaticResource boolToColor}}"
+                                CornerRadius="10"
+                                HasShadow="False">
+                                <StackLayout
+                                    HorizontalOptions="Start"
+                                    Orientation="Horizontal"
+                                    Spacing="8"
+                                    VerticalOptions="Center">
+                                    <Image
+                                        Margin="13,13,0,13"
+                                        Aspect="AspectFill"
+                                        Source="{Binding IconImageSource}" />
+                                    <Label
+                                        Margin="0,0,13,0"
+                                        FontFamily="{StaticResource BalooRegular}"
+                                        FontSize="10"
+                                        Text="{Binding CategoryName}"
+                                        TextColor="{Binding IsSelected, Converter={StaticResource boolToTextColor}}"
+                                        VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView
+                x:Name="HomePlantContent"
+                Grid.Row="4"
+                IsVisible="true"
+                ItemsSource="{Binding Plants}"
+                SelectedItem="{Binding SelectedPlant}"
+                SelectionChanged="HomePlantContent_SelectionChanged"
+                SelectionMode="Single">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            BackgroundColor="{StaticResource GreyColor}"
+                            CornerRadius="15"
+                            HasShadow="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <BoxView HeightRequest="40" />
+                                <Frame
+                                    Grid.Row="1"
+                                    CornerRadius="20"
+                                    HasShadow="False"
+                                    HeightRequest="200">
+                                    <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                </Frame>
+                                <BoxView Grid.Row="2" HeightRequest="30" />
+                                <StackLayout
+                                    Grid.Row="3"
+                                    HeightRequest="70"
+                                    Orientation="Vertical"
+                                    Spacing="5">
+                                    <Label
+                                        FontFamily="{StaticResource BalooRegular}"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding PlantType}"
+                                        TextColor="{StaticResource TextColor}" />
+                                    <Label
+                                        FontFamily="{StaticResource BalooSemiBold}"
+                                        FontSize="22"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource TextColor}" />
+
+                                    <StackLayout
+                                        HorizontalOptions="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="10">
+                                        <Label
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            Text="{StaticResource heart}"
+                                            TextColor="{StaticResource GreenColor}" />
+                                        <Label
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            Text="{StaticResource cart}"
+                                            TextColor="{StaticResource GreenColor}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <BoxView
+                x:Name="CactusContent"
+                Grid.Row="4"
+                BackgroundColor="Aqua"
+                IsVisible="true"
+                Opacity="0" />
+            <BoxView
+                x:Name="FlowersContent"
+                Grid.Row="4"
+                BackgroundColor="Aquamarine"
+                IsVisible="true"
+                Opacity="0" />
+        </Grid>
+    </Grid>
+</ContentPage>
