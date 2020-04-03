@@ -35,7 +35,9 @@ namespace PlantTinder.Services
                     RoomTemperature = "25",
                     Ambience = "60",
                     IsFavorite = false,
-                    PlantType = "Home Plant"
+                    PlantType = "Home Plant",
+                    IsNew = true,
+                    Price = 25
                 },
                 new Plant
                 {
@@ -47,7 +49,9 @@ namespace PlantTinder.Services
                     RoomTemperature = "25",
                     Ambience = "60",
                     IsFavorite = false,
-                    PlantType = "Home Plant"
+                    PlantType = "Home Plant",
+                    IsNew = false,
+                    Price = 39
                 }
             };
         }
