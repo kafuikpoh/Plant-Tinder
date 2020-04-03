@@ -142,6 +142,7 @@
             <CollectionView
                 x:Name="HomePlantContent"
                 Grid.Row="4"
+                HorizontalScrollBarVisibility="Never"
                 IsVisible="true"
                 ItemsSource="{Binding Plants}"
                 SelectedItem="{Binding SelectedPlant}"
