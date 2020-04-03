@@ -13,5 +13,6 @@ namespace PlantTinder.Models
         public bool IsFavorite { get; set; }
         public string PlantType { get; set; }
         public decimal Price { get; set; }
+        public bool IsNew { get; set; }
     }
 }
