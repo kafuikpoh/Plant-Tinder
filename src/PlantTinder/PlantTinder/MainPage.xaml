@@ -34,6 +34,7 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
+
     </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -144,6 +145,19 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>-->
             </CollectionView>
 
             <CollectionView
@@ -155,107 +169,122 @@
                 SelectedItem="{Binding SelectedPlant}"
                 SelectionChanged="HomePlantContent_SelectionChanged"
                 SelectionMode="Single">
-
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="{StaticResource GreyColor}"
-                            CornerRadius="15"
-                            HasShadow="False">
-                            <Grid
-                                Padding="10,0,10,0"
-                                HorizontalOptions="Center"
-                                IsClippedToBounds="False"
-                                VerticalOptions="Center"
-                                WidthRequest="240">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <!--<BoxView HeightRequest="40" />-->
-
-                                <StackLayout
-                                    Grid.Row="1"
-                                    HeightRequest="240"
+                        <Grid>
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="{StaticResource GreyColor}"
+                                CornerRadius="15"
+                                HasShadow="False">
+                                <Grid
+                                    Padding="10,0,10,0"
                                     HorizontalOptions="Center"
-                                    WidthRequest="200">
+                                    IsClippedToBounds="False"
+                                    VerticalOptions="Center"
+                                    WidthRequest="240">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <!--<BoxView HeightRequest="40" />-->
+
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        HeightRequest="240"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="200">
+                                        <Frame
+                                            CornerRadius="20"
+                                            HasShadow="False"
+                                            WidthRequest="150">
+                                            <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                        </Frame>
+                                    </StackLayout>
+
+
                                     <Frame
+                                        Grid.Row="0"
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource GreenColor}"
                                         CornerRadius="20"
                                         HasShadow="False"
-                                        WidthRequest="150">
-                                        <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                        HeightRequest="40"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding IsNew}"
+                                        TranslationX="0"
+                                        TranslationY="20"
+                                        VerticalOptions="Start"
+                                        WidthRequest="40">
+                                        <Label
+                                            FontFamily="{StaticResource BalooRegular}"
+                                            FontSize="12"
+                                            HorizontalTextAlignment="Center"
+                                            Text="New"
+                                            TextColor="White"
+                                            VerticalTextAlignment="Center" />
                                     </Frame>
-                                </StackLayout>
 
+                                    <!--<BoxView Grid.Row="2" HeightRequest="10" />-->
 
-                                <Frame
-                                    Grid.Row="0"
-                                    Padding="0"
-                                    BackgroundColor="{StaticResource GreenColor}"
-                                    CornerRadius="20"
-                                    HasShadow="False"
-                                    HeightRequest="40"
-                                    HorizontalOptions="End"
-                                    IsVisible="{Binding IsNew}"
-                                    TranslationX="0"
-                                    TranslationY="20"
-                                    VerticalOptions="Start"
-                                    WidthRequest="40">
                                     <Label
+                                        Grid.Row="2"
                                         FontFamily="{StaticResource BalooRegular}"
-                                        FontSize="12"
                                         HorizontalTextAlignment="Center"
-                                        Text="New"
-                                        TextColor="White"
-                                        VerticalTextAlignment="Center" />
-                                </Frame>
-
-                                <!--<BoxView Grid.Row="2" HeightRequest="10" />-->
-
-                                <Label
-                                    Grid.Row="2"
-                                    FontFamily="{StaticResource BalooRegular}"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding PlantType}"
-                                    TextColor="{StaticResource TextColor}"
-                                    VerticalTextAlignment="Start" />
-                                <Label
-                                    Grid.Row="3"
-                                    FontFamily="{StaticResource BalooSemiBold}"
-                                    FontSize="22"
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding Name}"
-                                    TextColor="{StaticResource TextColor}"
-                                    VerticalTextAlignment="Start" />
-                                <StackLayout
-                                    Grid.Row="4"
-                                    HorizontalOptions="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="10">
+                                        Text="{Binding PlantType}"
+                                        TextColor="{StaticResource TextColor}"
+                                        VerticalTextAlignment="Start" />
                                     <Label
-                                        FontFamily="{StaticResource MaterialFontFamily}"
-                                        FontSize="18"
-                                        Text="{StaticResource heart}"
-                                        TextColor="{StaticResource GreenColor}" />
-                                    <Label
-                                        FontFamily="{StaticResource MaterialFontFamily}"
-                                        FontSize="18"
-                                        Text="{StaticResource cart}"
-                                        TextColor="{StaticResource GreenColor}" />
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
+                                        Grid.Row="3"
+                                        FontFamily="{StaticResource BalooSemiBold}"
+                                        FontSize="22"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource TextColor}"
+                                        VerticalTextAlignment="Start" />
+                                    <StackLayout
+                                        Grid.Row="4"
+                                        HorizontalOptions="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="10">
+                                        <Label
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            FontSize="18"
+                                            Text="{StaticResource heart}"
+                                            TextColor="{StaticResource GreenColor}" />
+                                        <Label
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            FontSize="18"
+                                            Text="{StaticResource cart}"
+                                            TextColor="{StaticResource GreenColor}" />
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>-->
             </CollectionView>
             <BoxView
                 x:Name="CactusContent"
