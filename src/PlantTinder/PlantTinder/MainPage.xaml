@@ -48,8 +48,15 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                <Image Aspect="AspectFit" Source="menu.png" />
+            <StackLayout
+                HeightRequest="28"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                WidthRequest="28">
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="28"
+                    Source="menu.png" />
             </StackLayout>
 
             <StackLayout
@@ -142,6 +149,7 @@
             <CollectionView
                 x:Name="HomePlantContent"
                 Grid.Row="4"
+                HorizontalScrollBarVisibility="Never"
                 IsVisible="true"
                 ItemsSource="{Binding Plants}"
                 SelectedItem="{Binding SelectedPlant}"

@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="PlantTinder.Views.PlantDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <BoxView BackgroundColor="White" />
+        <BoxView Grid.Column="1" BackgroundColor="{StaticResource GreenColor}" />
+
+        <Grid
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="0,40,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Fake Navbar  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout
+                    Margin="25,0,0,0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="BackIcon_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                    <Label
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
+                        Text="{StaticResource back}"
+                        TextColor="{StaticResource TextColor}"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+
+                <StackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="48">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource LightGreenColor}"
+                        CornerRadius="24"
+                        HasShadow="False"
+                        HeightRequest="48"
+                        WidthRequest="48">
+                        <Label
+                            FontFamily="{StaticResource MaterialFontFamily}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            Text="{StaticResource dots}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </Frame>
+                </StackLayout>
+            </Grid>
+
+            <!--  Content  -->
+            <Grid
+                Grid.Row="1"
+                Padding="14,40,0,0"
+                BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout
+                    Grid.Column="0"
+                    Margin="0,60,0,0"
+                    Spacing="20">
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="60">
+                        <StackLayout Margin="0,10,0,10" VerticalOptions="Center">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                HorizontalOptions="Center"
+                                Source="height.png"
+                                VerticalOptions="Start" />
+                            <Label
+                                FontFamily="{StaticResource BalooRegular}"
+                                HorizontalOptions="Center"
+                                TextColor="{StaticResource TextColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Plant.Height}" />
+                                        <Span Text="cm" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="60">
+                        <StackLayout Margin="0,10,0,10" VerticalOptions="Center">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                HorizontalOptions="Center"
+                                Source="width.png"
+                                VerticalOptions="Start"
+                                WidthRequest="20" />
+                            <Label
+                                FontFamily="{StaticResource BalooRegular}"
+                                HorizontalOptions="Center"
+                                TextColor="{StaticResource TextColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Plant.Width}" />
+                                        <Span Text="cm" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="60">
+                        <StackLayout Margin="0,5,0,10" VerticalOptions="Center">
+
+                            <Label
+                                FontFamily="{StaticResource BalooRegular}"
+                                HorizontalOptions="Center"
+                                Text="Room temp"
+                                TextColor="{StaticResource TextColor}"
+                                VerticalOptions="Start" />
+
+                            <StackLayout
+                                HeightRequest="20"
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"
+                                    HorizontalOptions="Center"
+                                    Source="temperature.png"
+                                    VerticalOptions="Start"
+                                    WidthRequest="20" />
+                                <Label FontFamily="{StaticResource BalooRegular}" TextColor="{StaticResource TextColor}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Plant.RoomTemperature}" />
+                                            <Span Text="˚C" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="60">
+                        <StackLayout Margin="0,5,0,10" VerticalOptions="Center">
+
+                            <Label
+                                FontFamily="{StaticResource BalooRegular}"
+                                HorizontalOptions="Center"
+                                Text="Light"
+                                TextColor="{StaticResource TextColor}"
+                                VerticalOptions="Start" />
+
+                            <StackLayout
+                                HeightRequest="20"
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"
+                                    HorizontalOptions="Center"
+                                    Source="light.png"
+                                    VerticalOptions="Start"
+                                    WidthRequest="20" />
+                                <Label FontFamily="{StaticResource BalooRegular}" TextColor="{StaticResource TextColor}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Plant.RoomTemperature}" />
+                                            <Span Text="˚C" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <Image
+                    Grid.Column="1"
+                    Margin="0,40,0,0"
+                    Aspect="Fill"
+                    Source="{Binding Plant.Image}"
+                    VerticalOptions="End" />
+
+                <StackLayout
+                    Grid.Column="1"
+                    Margin="0,0,30,0"
+                    HeightRequest="60"
+                    HorizontalOptions="End"
+                    Orientation="Horizontal"
+                    Spacing="20"
+                    VerticalOptions="Start">
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="80"
+                        WidthRequest="60">
+
+                        <Image Aspect="AspectFit" Source="{Binding Plant.Image}" />
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        BorderColor="{StaticResource GreyColor}"
+                        HasShadow="False"
+                        HeightRequest="80"
+                        WidthRequest="60">
+
+                        <Image Aspect="AspectFit" Source="flipped.png" />
+                    </Frame>
+                </StackLayout>
+            </Grid>
+
+            <!--  Footer  -->
+            <Grid Grid.Row="2" HeightRequest="160">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Margin="10,0,10,0" HorizontalOptions="Center">
+                    <Label
+                        FontFamily="{StaticResource BalooSemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource TextColor}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="About " />
+                                <Span Text="{Binding Plant.Name}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+
+                    <Label
+                        FontFamily="{StaticResource BalooRegular}"
+                        FontSize="12"
+                        Text="{Binding Plant.Description}"
+                        TextColor="{StaticResource TextColor}" />
+                </StackLayout>
+
+                <StackLayout
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    HorizontalOptions="Center"
+                    Spacing="0"
+                    VerticalOptions="Center">
+                    <Label
+                        FontFamily="{StaticResource BalooSemiBold}"
+                        FontSize="50"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Plant.Price, StringFormat='{0:C}'}"
+                        TextColor="White" />
+
+                    <Label
+                        FontFamily="{StaticResource BalooSemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="BUY"
+                        TextColor="White" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+</ContentPage>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PlantTinder.Models;
 using PlantTinder.ViewModels;
+using PlantTinder.Views;
 using Xamarin.Forms;
 
 namespace PlantTinder
@@ -55,8 +56,11 @@ namespace PlantTinder
             selectedIndex = catIndex;
         }
 
-        void HomePlantContent_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        async void HomePlantContent_SelectionChanged(Object sender, SelectionChangedEventArgs e)
         {
+            var plantSelected = e.CurrentSelection.FirstOrDefault() as Plant;
+
+            await Navigation.PushAsync(new PlantDetailPage(plantSelected));
         }
 
     }
