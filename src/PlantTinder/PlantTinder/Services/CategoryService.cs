@@ -28,19 +28,19 @@ namespace PlantTinder.Services
                 new PlantCategory
                 {
                     CategoryName = "Home Plants",
-                    IconImageSource = "potted-black.png",
+                    IconImageSource = "pottedblack.png",
                     IsSelected = false
                 },
                 new PlantCategory
                 {
                     CategoryName = "Cactus",
-                    IconImageSource = "cactus-black.png",
+                    IconImageSource = "cactusblack.png",
                     IsSelected = false
                 },
                 new PlantCategory
                 {
                     CategoryName = "Flowers",
-                    IconImageSource = "orchid-black.png",
+                    IconImageSource = "orchidblack.png",
                     IsSelected = false
                 }
             };
