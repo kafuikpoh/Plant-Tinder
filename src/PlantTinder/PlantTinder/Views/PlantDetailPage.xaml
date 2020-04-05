@@ -203,7 +203,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding Plant.RoomTemperature}" />
-                                            <Span Text="˚C" />
+                                            <Span Text="%" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
