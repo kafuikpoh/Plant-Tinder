@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PlantTinder.Models;
+using PlantTinder.Services;
 using PlantTinder.ViewModels;
 using PlantTinder.Views;
 using Xamarin.Forms;
@@ -26,7 +27,7 @@ namespace PlantTinder
         {
             InitializeComponent();
 
-            BindingContext = new MainPageViewModel();
+            BindingContext = new MainPageViewModel(DependencyService.Get<INavService>());
 
             _pillContents.Add(HomePlantContent);
             _pillContents.Add(CactusContent);
@@ -56,12 +57,14 @@ namespace PlantTinder
             selectedIndex = catIndex;
         }
 
-        async void HomePlantContent_SelectionChanged(Object sender, SelectionChangedEventArgs e)
+        
+
+        protected override void OnAppearing()
         {
-            var plantSelected = e.CurrentSelection.FirstOrDefault() as Plant;
+            base.OnAppearing();
 
-            await Navigation.PushAsync(new PlantDetailPage(plantSelected));
+            //Initialize MainPageViewModel
+            viewModel?.Init();
         }
-
     }
 }

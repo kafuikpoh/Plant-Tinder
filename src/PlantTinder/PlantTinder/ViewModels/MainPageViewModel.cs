@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using PlantTinder.Models;
 using PlantTinder.Services;
+using Xamarin.Forms;
 
 namespace PlantTinder.ViewModels
 {
@@ -72,8 +73,17 @@ namespace PlantTinder.ViewModels
             }
         }
 
-        public MainPageViewModel()
+        public MainPageViewModel(INavService navService) : base(navService)
         {
+            
+
+            
+        }
+
+        public override void Init()
+        {
+            base.Init();
+
             LoadData();
 
             _categoryItemSelected = Categories.FirstOrDefault();
@@ -84,5 +94,9 @@ namespace PlantTinder.ViewModels
             Plants = new ObservableCollection<Plant>(PlantService.Instance.GetPlants());
             Categories = new ObservableCollection<PlantCategory>(CategoryService.Instance.GetCategories());
         }
+
+        public Command<Plant> ViewCommand => new Command<Plant>(
+            async plant => await NavService.NavigateTo<PlantDetailViewModel, Plant>(plant));
+        
     }
 }
