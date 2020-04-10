@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:local="clr-namespace:PlantTinder.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:PlantTinder.ViewModels"
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <!--  Padding="35,50,35,35"  -->
@@ -166,8 +167,6 @@
                 HorizontalScrollBarVisibility="Never"
                 IsVisible="true"
                 ItemsSource="{Binding Plants}"
-                SelectedItem="{Binding SelectedPlant}"
-                SelectionChanged="HomePlantContent_SelectionChanged"
                 SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Horizontal" />
@@ -176,6 +175,9 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=ViewCommand}" CommandParameter="{Binding}" />
+                            </Grid.GestureRecognizers>
                             <Frame
                                 Padding="0"
                                 BackgroundColor="{StaticResource GreyColor}"
@@ -187,6 +189,7 @@
                                     IsClippedToBounds="False"
                                     VerticalOptions="Center"
                                     WidthRequest="240">
+
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />

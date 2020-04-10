@@ -1,8 +1,11 @@
 ﻿using System;
 using PlantTinder.Models;
+using PlantTinder.Services;
+using Xamarin.Forms;
+
 namespace PlantTinder.ViewModels
 {
-    public class PlantDetailViewModel : BaseViewModel
+    public class PlantDetailViewModel : BaseViewModel<Plant>
     {
         Plant _plant;
         public Plant Plant
@@ -16,9 +19,17 @@ namespace PlantTinder.ViewModels
             }
         }
 
-        public PlantDetailViewModel(Plant selectedPlant)
+        public PlantDetailViewModel(INavService navService) : base(navService)
         {
-            Plant = selectedPlant;
+            //Plant = selectedPlant;
         }
+
+        public override void Init(Plant parameter)
+        {
+            //base.Init();
+            Plant = parameter;
+        }
+
+        public Command BackCommand => new Command(async () => await NavService.GoBack());
     }
 }
