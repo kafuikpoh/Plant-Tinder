@@ -10,6 +10,9 @@ Android, iOS
 
 ## Screenshots
 
+<img src="images/iosShot1.png" width="400"> 
+<img src="images/iosShot2.png" width="400">
+
 ## Copyright and license
 
 Code released under the [MIT license](https://opensource.org/licenses/MIT).
